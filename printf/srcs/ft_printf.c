@@ -6,17 +6,40 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:40:54 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/27 13:54:44 by gcools           ###   ########.fr       */
+/*   Updated: 2023/10/30 11:50:04 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 
+void	ft_s(va_list args)
+{
+	const char	*str;
+
+	str = va_arg(args, const char *);
+	write (1, str, ft_strlen(str));
+}
+
+void	ft_d(va_list args)
+{
+	int	str;
+
+	str = ft_atoi(va_arg(args, const char *));
+	ft_putnbr_fd(str, 1);
+}
+
+void	ft_c(va_list args)
+{
+	char	c;
+
+	c = (char)va_arg(args, const char *);
+	write (1, &c, 1);
+}
+
 int	ft_printf(const char *string, ...)
 {
 	va_list		args;
 	const char	*temp;
-	const char	*str;
 
 	va_start(args, string);
 	temp = string;
@@ -26,15 +49,14 @@ int	ft_printf(const char *string, ...)
 		{
 			temp++;
 			if (*temp == 's')
-			{
-				str = va_arg(args, const char *);
-				write(1, str, ft_strlen(str));
-			}
+				ft_s(args);
+			if (*temp == 'd')
+				ft_d(args);
+			if (*temp == 'c')
+				ft_c(args);
 		}
 		else
-		{
 			write(1, temp, 1);
-		}
 		temp++;
 	}
 	va_end(args);
@@ -43,6 +65,6 @@ int	ft_printf(const char *string, ...)
 
 int	main(void)
 {
-	ft_printf("%s\n", "test");
+	ft_printf("%s\n %d\n", "test", "123");
 	return (0);
 }
