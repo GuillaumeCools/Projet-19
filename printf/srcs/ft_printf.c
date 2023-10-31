@@ -3,68 +3,102 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 10:40:54 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/30 11:50:04 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/30 11:54:39 by gcools            #+#    #+#             */
+/*   Updated: 2023/10/31 10:19:14 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 
-void	ft_s(va_list args)
-{
-	const char	*str;
 
-	str = va_arg(args, const char *);
-	write (1, str, ft_strlen(str));
+int	ft_tab_count(const char *string)
+{
+	int	i;
+
+	i = 0;
+	while (*string != '\0')
+	{
+		if (*string == '%')
+		{
+			i++;
+			string++;
+		}
+		string++;
+	}
+	return (i);
 }
 
-void	ft_d(va_list args)
-{
-	int	str;
 
-	str = ft_atoi(va_arg(args, const char *));
-	ft_putnbr_fd(str, 1);
+void	ft_create_s(va_list args)
+{
+	ft_putstr_fd(va_arg(args, char *), 1);
 }
 
-void	ft_c(va_list args)
+void	ft_create_d(va_list args)
 {
-	char	c;
+	ft_putnbr_fd((va_arg(args, int)), 1);
+}
 
-	c = (char)va_arg(args, const char *);
-	write (1, &c, 1);
+void	ft_create_c(va_list args)
+{
+	ft_putchar_fd(*(va_arg(args, char *)), 1);
+}
+
+void	ft_check(const char *temp, va_list args)
+{
+	if (*temp == 's')
+		ft_create_s(args);
+	if (*temp == 'd')
+		ft_create_d(args);
+	if (*temp == 'c')
+		ft_create_c(args);
+}
+
+void	ft_advance(va_list args, const char *string)
+{
+	const char	*temp;
+	int			i;
+
+	i = 0;
+	temp = string;
+	while (*temp != '\0')
+	{
+		while (i < ft_tab_count(string))
+		{
+			if (*temp != '%')
+				ft_putchar_fd(*temp, 1);
+			if (*temp == '%')
+			{
+				temp++;
+				ft_check(temp, args);
+				va_arg(args, char *);
+				i++;
+			}
+			
+			// faire une fonction qui check pour chacune des possibilitées pour eviter de depasser les 25 lignes \/
+			// implementer toutes les 8 types differents 
+			// separer les differentes focntions en plusieurs fichier pour une arbo clean 
+			
+			temp++;
+		}
+	}
 }
 
 int	ft_printf(const char *string, ...)
 {
 	va_list		args;
-	const char	*temp;
 
 	va_start(args, string);
-	temp = string;
-	while (*temp != '\0')
-	{
-		if (*temp == '%')
-		{
-			temp++;
-			if (*temp == 's')
-				ft_s(args);
-			if (*temp == 'd')
-				ft_d(args);
-			if (*temp == 'c')
-				ft_c(args);
-		}
-		else
-			write(1, temp, 1);
-		temp++;
-	}
+	ft_advance(args, string);
 	va_end(args);
 	return (0);
 }
 
 int	main(void)
 {
-	ft_printf("%s\n %d\n", "test", "123");
+	//printf("%d\n", 1234);
+	ft_printf("Bonjour :%s %d %c", "test", 1234, "c");
 	return (0);
 }
