@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 14:13:13 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/03 14:28:47 by gcools           ###   ########.fr       */
+/*   Created: 2023/11/03 11:16:42 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/03 14:10:29 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_putnbr_hex(uintptr_t n, int fd)
 {
-	write (fd, &c, 1);
-}
-/*
-int	main(void)
-{
-	char	c = 'a';
-	int		fd;
+	char	*hex_base;
 
-	fd = 1;
-	ft_putchar_fd(c, fd);
-	return (0);
+	hex_base = "0123456789abcdef";
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n >= 16)
+		ft_putnbr_hex(n / 16, fd);
+	ft_putchar_fd(hex_base[n % 16], fd);
 }
-*/

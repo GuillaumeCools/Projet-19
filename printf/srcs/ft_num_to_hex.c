@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_num_to_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 14:13:13 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/03 14:28:47 by gcools           ###   ########.fr       */
+/*   Created: 2023/11/03 11:17:13 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/03 14:10:25 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
+#include "../includes/ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_num_to_hex(int n, int fd)
 {
-	write (fd, &c, 1);
-}
-/*
-int	main(void)
-{
-	char	c = 'a';
-	int		fd;
+	char	*hex_base;
 
-	fd = 1;
-	ft_putchar_fd(c, fd);
-	return (0);
+	hex_base = "0123456789abcdef";
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n >= 16)
+		ft_num_to_hex(n / 16, fd);
+	ft_putchar_fd(hex_base[n % 16], fd);
 }
-*/

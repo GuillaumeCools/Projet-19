@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_pos_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 14:13:13 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/03 14:28:47 by gcools           ###   ########.fr       */
+/*   Created: 2023/11/03 11:16:26 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/03 14:10:34 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
+#include "../includes/ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_putnbr_pos_fd(unsigned int n, int fd)
 {
-	write (fd, &c, 1);
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	ft_putchar_fd((n % 10) + '0', fd);
 }
-/*
-int	main(void)
-{
-	char	c = 'a';
-	int		fd;
-
-	fd = 1;
-	ft_putchar_fd(c, fd);
-	return (0);
-}
-*/
