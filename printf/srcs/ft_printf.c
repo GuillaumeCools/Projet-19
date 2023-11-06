@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:54:39 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/06 16:15:01 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/06 17:02:13 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_advance(va_list args, const char *string)
 		if (*temp == '%')
 		{
 			temp++;
-			total += ft_check(temp, args); 
+			total += ft_check(temp, args);
 			if (total < total_temp)
 				return (-1);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_return.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:02:36 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/06 15:03:24 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/06 17:00:50 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ int	ft_putnbr_return(int n, int fd)
 	}
 	else if (n < 0)
 	{
-		ft_putchar_return('-', fd);
+		if (ft_putchar_return('-', fd) == -1)
+			return (-1);
 		n = n * -1;
 	}
 	if (n >= 10)
 	{
 		ft_putnbr_return(n / 10, fd);
 	}
-	ft_putchar_return((n % 10) + '0', fd);
+	if (ft_putchar_return((n % 10) + '0', fd) == -1)
+		return (-1);
 	return (total);
 }

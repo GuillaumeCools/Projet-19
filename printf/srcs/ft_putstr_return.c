@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_return.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:48:50 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/11/06 14:33:37 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/06 17:06:15 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	ft_putstr_return(char *s, int fd)
 	i = 0;
 	while (s[i])
 	{
-		ft_putchar_fd(s[i], fd);
+		if (ft_putchar_return(s[i], fd) == -1)
+			return (-1);
 		i++;
 	}
 	return (total);
