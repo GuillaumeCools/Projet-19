@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:49:20 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/23 12:07:01 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/04 00:01:10 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memset(void *b, int c, size_t size)
 	while (i < size)
 	{
 		final[i] = c;
-		i++; 
+		i++;
 	}
 	return (b);
 }

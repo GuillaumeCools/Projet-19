@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:54:39 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/03 15:06:32 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/03 15:57:34 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,27 @@ int	ft_tab_count(const char *string)
 	return (i);
 }
 
-void	ft_check(const char *temp, va_list args)
+int	ft_check(const char *temp, va_list args)
 {
 	if (*temp == 'c')
-		ft_putchar_fd((va_arg(args, int)), 1);
+		return (ft_putchar_fd((va_arg(args, int)), 1));
 	if (*temp == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		return (ft_putstr_return(va_arg(args, char *), 1));
 	if (*temp == 'p')
 	{
 		write (1, "0x10", 4);
-		ft_putnbr_hex((va_arg(args, int)), 1);
+		return (ft_putnbr_hex((va_arg(args, int)), 1));
 	}
 	if (*temp == 'd')
-		ft_putnbr_fd((va_arg(args, int)), 1);
+		return (ft_putnbr_fd((va_arg(args, int)), 1));
 	if (*temp == 'i')
-		ft_putnbr_fd((va_arg(args, int)), 1);
+		return (ft_putnbr_fd((va_arg(args, int)), 1));
 	if (*temp == 'u')
-		ft_putnbr_pos_fd((va_arg(args, int)), 1);
+		return (ft_putnbr_pos_fd((va_arg(args, int)), 1));
 	if (*temp == 'x')
-		ft_num_to_hex((va_arg(args, int)), 1);
+		return (ft_num_to_hex((va_arg(args, int)), 1));
 	if (*temp == 'X')
-		ft_num_to_hex_up((va_arg(args, int)), 1);
+		return (ft_num_to_hex_up((va_arg(args, int)), 1));
 	if (*temp == '%')
 	{
 		va_arg(args, char *);
@@ -58,7 +58,7 @@ void	ft_check(const char *temp, va_list args)
 	}
 }
 
-void	ft_advance(va_list args, const char *string)
+int	ft_advance(va_list args, const char *string)
 {
 	const char	*temp;
 	int			i;
@@ -74,7 +74,7 @@ void	ft_advance(va_list args, const char *string)
 			if (*temp == '%')
 			{
 				temp++;
-				ft_check(temp, args);
+				return (ft_check(temp, args));
 				va_arg(args, char *);
 				i++;
 			}
@@ -86,11 +86,12 @@ void	ft_advance(va_list args, const char *string)
 int	ft_printf(const char *string, ...)
 {
 	va_list		args;
+	int	temp;
 
 	va_start(args, string);
-	ft_advance(args, string);
+	temp = ft_advance(args, string);
 	va_end(args);
-	return (0);
+	return (temp);
 }
 
 int	main(void)
@@ -101,3 +102,5 @@ int	main(void)
 }
 
 
+//mettre toutes les variables en int a la place de void pour return la bonne valeur 
+//calculer la valeur de retours en modifiant des fonctions 

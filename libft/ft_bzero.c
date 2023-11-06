@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:15:13 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/23 12:05:46 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/04 00:00:59 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_bzero(void *b, size_t size)
 	while (i < size)
 	{
 		final[i] = '\0';
-		i++; 
+		i++;
 	}
 	return (b);
 }
