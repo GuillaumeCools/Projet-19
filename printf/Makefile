@@ -6,7 +6,7 @@
 #    By: gcools <gcools@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 11:55:33 by gcools            #+#    #+#              #
-#    Updated: 2023/11/03 14:23:02 by gcools           ###   ########.fr        #
+#    Updated: 2023/11/06 15:17:52 by gcools           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
 SRCS_DIR = srcs/
 
-SOURCES = ft_num_to_hex_up ft_num_to_hex ft_printf ft_putnbr_hex ft_putnbr_pos_fd
+SOURCES = ft_num_to_hex_return ft_num_to_hex_up_return ft_printf ft_putchar_return ft_putnbr_hex_return ft_putnbr_pos_return ft_putnbr_return ft_putstr_return ft_intlen_original ft_intlen_hex ft_intlen_pos
 
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SOURCES))) 
 OBJS = $(addsuffix .o, $(SOURCES))

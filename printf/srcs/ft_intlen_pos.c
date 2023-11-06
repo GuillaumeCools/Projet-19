@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_num_to_hex.c                                    :+:      :+:    :+:   */
+/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 11:17:13 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/03 14:10:25 by gcools           ###   ########.fr       */
+/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/06 15:17:10 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
-void	ft_num_to_hex(int n, int fd)
+int	ft_intlen_pos(unsigned int n)
 {
-	char	*hex_base;
+	int	i;
 
-	hex_base = "0123456789abcdef";
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
+	i = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
+		i++;
+	while (n != 0)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		n = n / 10;
+		i++;
 	}
-	if (n >= 16)
-		ft_num_to_hex(n / 16, fd);
-	ft_putchar_fd(hex_base[n % 16], fd);
+	return (i);
 }

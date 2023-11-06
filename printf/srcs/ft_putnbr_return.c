@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_pos_fd.c                                 :+:      :+:    :+:   */
+/*   ft_putnbr_return.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 11:16:26 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/03 14:10:34 by gcools           ###   ########.fr       */
+/*   Created: 2023/11/06 11:02:36 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/06 15:03:24 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
-void	ft_putnbr_pos_fd(unsigned int n, int fd)
+int	ft_putnbr_return(int n, int fd)
 {
+	int	total;
+
+	total = ft_intlen_original(n);
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return (11);
+	}
+	else if (n < 0)
+	{
+		ft_putchar_return('-', fd);
+		n = n * -1;
+	}
 	if (n >= 10)
 	{
-		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_return(n / 10, fd);
 	}
-	ft_putchar_fd((n % 10) + '0', fd);
+	ft_putchar_return((n % 10) + '0', fd);
+	return (total);
 }

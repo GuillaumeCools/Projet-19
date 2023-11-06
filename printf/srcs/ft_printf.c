@@ -3,104 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:54:39 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/03 15:57:34 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/06 16:15:01 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
-int	ft_tab_count(const char *string)
-{
-	int	i;
-
-	i = 0;
-	while (*string != '\0')
-	{
-		if (*string == '%')
-		{
-			i++;
-			string++;
-		}
-		string++;
-	}
-	return (i);
-}
-
 int	ft_check(const char *temp, va_list args)
 {
 	if (*temp == 'c')
-		return (ft_putchar_fd((va_arg(args, int)), 1));
+		return (ft_putchar_return((va_arg(args, int)), 1));
 	if (*temp == 's')
 		return (ft_putstr_return(va_arg(args, char *), 1));
 	if (*temp == 'p')
 	{
-		write (1, "0x10", 4);
-		return (ft_putnbr_hex((va_arg(args, int)), 1));
+		write (1, "0x", 2);
+		return (ft_putnbr_hex_return((va_arg(args, uintptr_t)), 1) + 2);
 	}
 	if (*temp == 'd')
-		return (ft_putnbr_fd((va_arg(args, int)), 1));
+		return (ft_putnbr_return((va_arg(args, int)), 1));
 	if (*temp == 'i')
-		return (ft_putnbr_fd((va_arg(args, int)), 1));
+		return (ft_putnbr_return((va_arg(args, int)), 1));
 	if (*temp == 'u')
-		return (ft_putnbr_pos_fd((va_arg(args, int)), 1));
+		return (ft_putnbr_pos_return((va_arg(args, unsigned int)), 1));
 	if (*temp == 'x')
-		return (ft_num_to_hex((va_arg(args, int)), 1));
+		return (ft_num_to_hex_return((va_arg(args, unsigned int)), 1));
 	if (*temp == 'X')
-		return (ft_num_to_hex_up((va_arg(args, int)), 1));
+		return (ft_num_to_hex_up_return((va_arg(args, unsigned int)), 1));
 	if (*temp == '%')
-	{
-		va_arg(args, char *);
-		ft_putchar_fd('%', 1);
-	}
+		return (ft_putchar_return('%', 1));
+	return (0);
 }
 
 int	ft_advance(va_list args, const char *string)
 {
 	const char	*temp;
-	int			i;
+	int			total;
+	int			total_temp;
 
-	i = 0;
+	total = 0;
 	temp = string;
 	while (*temp != '\0')
 	{
-		while (i < ft_tab_count(string))
+		total_temp = total;
+		if (*temp != '%')
 		{
-			if (*temp != '%')
-				ft_putchar_fd(*temp, 1);
-			if (*temp == '%')
-			{
-				temp++;
-				return (ft_check(temp, args));
-				va_arg(args, char *);
-				i++;
-			}
-			temp++;
+			if (ft_putchar_return(*temp, 1) == -1)
+				return (-1);
+			total++;
 		}
+		if (*temp == '%')
+		{
+			temp++;
+			total += ft_check(temp, args); 
+			if (total < total_temp)
+				return (-1);
+		}
+		temp++;
 	}
+	return (total);
 }
 
 int	ft_printf(const char *string, ...)
 {
 	va_list		args;
-	int	temp;
+	int			temp;
 
 	va_start(args, string);
 	temp = ft_advance(args, string);
 	va_end(args);
 	return (temp);
 }
-
+/*
 int	main(void)
 {
-	printf("%d\n", printf("%d\n", 9));
-	ft_printf("%d\n", ft_printf("%d", 9));
+	//void	*ptr = ((void *)-14523);
+
+	printf("%d\n", printf("%c\n", 't'));
+	ft_printf("%d\n", ft_printf("%c\n%c", 't', 't'));
 	return (0);
 }
-
-
-//mettre toutes les variables en int a la place de void pour return la bonne valeur 
-//calculer la valeur de retours en modifiant des fonctions 
+*/

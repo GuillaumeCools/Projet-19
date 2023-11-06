@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_return.c                                 :+:      :+:    :+:   */
+/*   ft_intlen_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 15:48:50 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/11/06 14:33:37 by gcools           ###   ########.fr       */
+/*   Created: 2023/11/06 13:45:37 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/06 14:57:46 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+#include "../includes/ft_printf.h"
 
-int	ft_putstr_return(char *s, int fd)
+int	ft_intlen_hex(uintptr_t n)
 {
 	int	i;
-	int	total;
 
-	if (s == NULL)
-	{
-		ft_putstr_return("(null)", 1);
-		return (6);
-	}
-	total = ft_strlen(s);
 	i = 0;
-	while (s[i])
+	if (n == 0)
+		return (1);
+	if (n < 0)
+		i++;
+	while (n != 0)
 	{
-		ft_putchar_fd(s[i], fd);
+		n = n / 16;
 		i++;
 	}
-	return (total);
+	return (i);
 }
