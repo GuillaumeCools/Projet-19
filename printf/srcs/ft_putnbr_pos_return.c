@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_pos_return.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:16:26 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/06 16:59:54 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/07 12:01:48 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	ft_putnbr_pos_return(unsigned int n, int fd)
 	total = ft_intlen_pos(n);
 	if (n >= 10)
 	{
-		ft_putnbr_pos_return(n / 10, fd);
+		if (ft_putnbr_pos_return(n / 10, fd) == -1)
+			return (-1);
 	}
 	if (ft_putchar_return((n % 10) + '0', fd) == -1)
 		return (-1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_num_to_hex_return.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:17:13 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/06 16:58:44 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/07 11:59:51 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	ft_num_to_hex_return(unsigned int n, int fd)
 	total = ft_intlen_hex(n);
 	hex_base = "0123456789abcdef";
 	if (n >= 16)
-		ft_num_to_hex_return(n / 16, fd);
+	{
+		if (ft_num_to_hex_return(n / 16, fd) == -1)
+			return (-1);
+	}
 	if (ft_putchar_return(hex_base[n % 16], fd) == -1)
 		return (-1);
 	return (total);

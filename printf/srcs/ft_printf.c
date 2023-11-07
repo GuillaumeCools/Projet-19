@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:54:39 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/06 17:02:13 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/07 12:03:26 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ft_check(const char *temp, va_list args)
 		return (ft_putstr_return(va_arg(args, char *), 1));
 	if (*temp == 'p')
 	{
-		write (1, "0x", 2);
+		if (write (1, "0x", 2) == -1)
+			return (-1);
 		return (ft_putnbr_hex_return((va_arg(args, uintptr_t)), 1) + 2);
 	}
 	if (*temp == 'd')
@@ -83,8 +84,8 @@ int	main(void)
 {
 	//void	*ptr = ((void *)-14523);
 
-	printf("%d\n", printf("%c\n", 't'));
-	ft_printf("%d\n", ft_printf("%c\n%c", 't', 't'));
+	printf("%d\n", printf("%p\n", "test"));
+	ft_printf("%d\n", ft_printf("%p\n", "test"));
 	return (0);
 }
 */
