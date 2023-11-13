@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:19:06 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/26 17:12:31 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/13 13:09:29 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char static	**ft_create_split(char c, char const *s, char **split)
 		if (s[i])
 		{
 			split[y] = ft_create_word((char *)&s[i], c);
-			if (!split)
+			if (!split[y])
 			{
 				ft_free(split);
 				return (NULL);
@@ -127,8 +127,8 @@ char	**ft_split(char const *s, char c)
 int	main(void)
 {
 	char	**tab;
-	char	*s = "hello! Worlddddd Hiiii    iiii     ";
-	char	c = ' ';
+	char	*s = "xxxxxxxxhello!0";
+	char	c = 'x';
 	int		i;
 
 	i = 0;

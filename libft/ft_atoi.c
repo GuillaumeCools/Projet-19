@@ -3,38 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:33:02 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/11/04 00:01:43 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/13 13:05:11 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+int static	ft_check(unsigned long long final, unsigned long long final_temp, 
+					int compt)
+{
+	if (final < final_temp && compt == -1)
+		return (0);
+	if (final < final_temp)
+		return (-1);
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	compt;
-	int	final;
+	int					i;
+	int					compt;
+	unsigned long long	final;
+	unsigned long long	final_temp;
 
 	i = 0;
 	compt = 1;
 	final = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || 
-		str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
 		i++;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		compt = compt * -1;
+		if (str[i] == '-')
+			compt = compt * -1;
 		i++;
 	}
-	else if (str[i] == '+')
-		i++;
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		final = final * 10;
-		final = final + (str[i] - 48);
+		final_temp = final;
+		final = (final * 10) + (str[i] - 48);
+		if (final < final_temp)
+			return (ft_check(final, final_temp, compt));
 		i++;
 	}
 	return (final * compt);
@@ -42,8 +53,8 @@ int	ft_atoi(const char *str)
 /*
 int	main(void)
 {
-	printf("%d\n", ft_atoi("   21474836470000000000"));
-	printf("%d\n", atoi("   21474836470000000000"));
+	printf("%d\n", ft_atoi("18446744073709551616"));
+	printf("%d\n", atoi("18446744073709551616"));
 	return (0);
 }
 */

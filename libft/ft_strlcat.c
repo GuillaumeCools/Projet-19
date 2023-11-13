@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:31:08 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/10/23 15:12:57 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/13 13:06:53 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 /*
 int	main(void)
 {
-	char	dest[50] = "pqrstuvwxyz";
-	const 	char *src = "abcd";
+	char	*dest = NULL;
+	const 	char *src = "test";
 	int		size = 0;
 	
 	printf("%zu\n", ft_strlcat(dest, src, size));
+	//printf("%zu\n", strlcat(dest, src, size));
 	return (0);
 }
 */

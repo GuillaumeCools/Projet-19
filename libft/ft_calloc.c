@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 13:03:51 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/24 13:54:40 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/13 11:45:51 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_calloc(size_t count, size_t size)
 	int		total;
 	char	*str;
 
+	if (size < 0)
+		return (NULL);
 	i = 0;
 	total = count * size;
 	str = malloc(total * sizeof(void));
@@ -33,12 +35,13 @@ void	*ft_calloc(size_t count, size_t size)
 /*
 int	main(void)
 {
-	int	count;
-	int	size;
+	int		count;
+	size_t	size;
 
 	count = 3;
-	size = 2;
+	size = 1500000;
 	printf("%s\n", ft_calloc(count, size));
+	printf("%s\n", calloc(count, size));
 	return (0);
 }
 */
