@@ -3,145 +3,101 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:53:22 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/14 10:05:18 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/14 16:24:25 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #include "get_next_line.h"
 
-void	*ft_bzero(void *b, size_t size)
+char	*ft_create_temp(char *buf, char *temp, int fd)
 {
-	size_t	i;
-	char	*final;
+	char		*second_temp;
+	int			i;
 
-	final = b;
-	i = 0;
-	while (i < size)
+	while (ft_check(temp) != 1)
 	{
-		final[i] = '\0';
-		i++;
+		buf = malloc(BUFFER_SIZE + 1);
+		if (!buf)
+			return (NULL);
+		i = read(fd, buf, BUFFER_SIZE);
+		if (i == -1)
+			return (NULL);
+		buf[BUFFER_SIZE] = '\0';
+		second_temp = ft_strjoin(temp, buf);
+		free (temp);
+		temp = second_temp;
+		if (temp == NULL)
+			return (NULL);
 	}
-	return (b);
+	return (temp);
 }
 
-int	ft_count(char *charset)
-{
-	int	i;
-
-	i = 0;
-	while(charset[i] && charset[i] != '\n')
-	{
-		i++;
-	}
-	return (i + 1);
-}
-
-int	ft_strlen(char *charset)
-{
-	int	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_create_final(char *temp)
 {
 	char	*final;
-	int		length_total;
-	int		i;
 	int		y;
 
-	i = 0;
 	y = 0;
-	length_total = ft_strlen(s1) + ft_strlen(s2);
-	final = malloc(length_total * sizeof(char) + 1);
+	final = malloc((ft_count(temp) + 1) * sizeof(char));
 	if (!final)
 		return (NULL);
-	while (s1[i])
+	while (y < ft_count(temp))
 	{
-		final[i] = s1[i];
-		i++;
-	}
-	while (s2[y])
-	{
-		final[i] = s2[y];
-		i++;
+		final[y] = temp[y];
 		y++;
 	}
-	final[i] = '\0';
+	final[y] = '\0';
 	return (final);
 }
 
-int	ft_check(char *temp)
+char	*ft_create_swap(char *temp, char *final)
 {
-	int	i;
+	char	*swap;
+	int		i;
+	int		y;
 
-	i = 0;
+	y = 0;
+	i = ft_strlen(final);
+	swap = malloc((ft_strlen(temp) - ft_strlen(final)) * sizeof(char));
+	if (!swap)
+		return (NULL);
 	while (temp[i])
 	{
-		if ('\n' == temp[i])
-			return (1);
+		swap[y] = temp[i];
 		i++;
+		y++;
 	}
-	return (0);
+	return (swap);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*buf;
 	static char	*temp;
-	char		*second_temp;
 	char		*final;
-	int			i;
-	int			y;
+	char		*swap;
 
-	y = 0;
-	if (temp == NULL) //initialise et malloc temp quand on rentre dans get_next_line pour la premiere fois
+	buf = NULL;
+	if (temp == NULL)
 	{
 		temp = malloc(1);
 		if (!temp)
 			return (NULL);
 	}
-	i = ft_strlen(temp);
-	buf = malloc(BUFFER_SIZE); //malloc le buffer
-	if (!buf)
-		return (NULL);
-	read(fd, buf, BUFFER_SIZE); //remplis mon buffer
-	second_temp = ft_strjoin(temp, buf); // malloc l addition des deux tailles (buffer + temp)
-	free (temp);
-	temp = second_temp;
+	temp = ft_create_temp(buf, temp, fd);
 	if (temp == NULL)
 		return (NULL);
-	while (y < BUFFER_SIZE)
-	{
-		temp[i] = buf[y];
-		i++;
-		y++;
-	}
-	if (ft_check(temp) != 1) // check si il y a un retour a la ligne
-		return (get_next_line(fd));
-	else
-	{
-		y = 0;
-		i = 0;
-		final = malloc(ft_count(temp) * sizeof(char));
-		while (y < ft_count(temp))
-		{
-			final[y] = temp[y];
-			y++;
-		}
-	}
+	final = ft_create_final(temp);
+	if (final == NULL)
+		return (NULL);
+	swap = ft_create_swap(temp, final);
+	if (swap == NULL)
+		return (NULL);
+	free(temp);
+	temp = swap;
 	return (final);
 }
 
@@ -151,9 +107,9 @@ int	main(void)
 	int	i;
 
 	i = 0;
-	while (i < 2)
+	fd = open("fichier.txt", O_RDONLY);
+	while (i < 6)
 	{
-		fd = open("fichier.txt", O_RDONLY);
 		printf("%s\n", get_next_line(fd));
 		i++;
 	}
