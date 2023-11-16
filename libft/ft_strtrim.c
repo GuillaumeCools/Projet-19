@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:31:06 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/26 11:53:00 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/16 14:53:57 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		len;
 
 	start = 0;
-	end = ft_strlen(s1) - 1;
 	if (!s1 || !set)
 		return (NULL);
+	end = ft_strlen(s1) - 1;
 	while (s1[start] && ft_checksep(s1[start], (char *)set))
 		start++;
 	while (end > start && ft_checksep(s1[end], (char *)set))

@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:19:40 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/23 12:05:29 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/16 14:54:15 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		lenght;
 	char	*final;
 
+	if (!s || !f)
+		return (NULL);
 	lenght = ft_strlen(s);
 	i = 0;
 	final = malloc(lenght * sizeof(char) + 1);

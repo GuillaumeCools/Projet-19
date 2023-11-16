@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:19:44 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/26 12:49:12 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/16 14:53:45 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	y = 0;
+	if (!s1 || !s2)
+		return (NULL);
 	length_total = ft_strlen(s1) + ft_strlen(s2);
 	final = malloc(length_total * sizeof(char) + 1);
 	if (!final)
@@ -31,11 +33,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	while (s2[y])
-	{
-		final[i] = s2[y];
-		i++;
-		y++;
-	}
+		final[i++] = s2[y++];
 	final[i] = '\0';
 	return (final);
 }
