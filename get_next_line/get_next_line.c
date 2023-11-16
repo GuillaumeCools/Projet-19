@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:53:22 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/15 15:02:13 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/16 15:35:58 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,25 @@ char	*ft_create_temp(char *buf, char *temp, int fd)
 	char		*second_temp;
 	int			i;
 
-	//pour verifier si on est deja arriver a la fin du fichier
 	i = read(fd, buf, BUFFER_SIZE);
 	if (i == 0)
-		return (NULL);
-
+		return (free(temp), NULL);
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
+		return (free(temp), NULL);
 	while (ft_check(temp) == 0)
 	{
-		buf = malloc(BUFFER_SIZE);
-		if (!buf)
-			return (NULL);
 		i = read(fd, buf, BUFFER_SIZE);
 		if (i == 0)
-			return (temp);
+			return (free(buf), temp);
 		buf[BUFFER_SIZE] = '\0';
 		second_temp = ft_strjoin(temp, buf);
 		free (temp);
 		temp = second_temp;
 		if (temp == NULL)
-			return (NULL);
+			return (free (buf), NULL);
 	}
-	return (temp);
+	return (free(buf), temp);
 }
 
 char	*ft_create_final(char *temp)
@@ -48,7 +46,7 @@ char	*ft_create_final(char *temp)
 	y = 0;
 	final = malloc((ft_count(temp) + 1) * sizeof(char));
 	if (!final)
-		return (NULL);
+		return (free(temp), NULL);
 	while (y < ft_count(temp))
 	{
 		final[y] = temp[y];
@@ -68,14 +66,14 @@ char	*ft_create_swap(char *temp, char *final)
 	i = ft_strlen(final);
 	swap = malloc((ft_strlen(temp) - ft_strlen(final)) * sizeof(char));
 	if (!swap)
-		return (NULL);
+		return (free(temp), free(final), NULL);
 	while (temp[i])
 	{
 		swap[y] = temp[i];
 		i++;
 		y++;
 	}
-	return (swap);
+	return (free(temp), swap);
 }
 
 char	*get_next_line(int fd)
@@ -85,10 +83,12 @@ char	*get_next_line(int fd)
 	char		*final;
 	char		*swap;
 
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+		return (NULL);
 	buf = NULL;
 	if (temp == NULL)
 	{
-		temp = malloc(1);
+		temp = ft_calloc(1, 1);
 		if (!temp)
 			return (NULL);
 	}
@@ -101,22 +101,26 @@ char	*get_next_line(int fd)
 	swap = ft_create_swap(temp, final);
 	if (swap == NULL)
 		return (NULL);
-	free(temp);
 	temp = swap;
 	return (final);
 }
-
+/*
 int	main(void)
 {
 	int	fd;
 	int	i;
+	char *str;
 
 	i = 0;
 	fd = open("fichier.txt", O_RDONLY);
-	while (i < 8)
+	while (i < 1)
 	{
-		printf("%s\n", get_next_line(fd));
+		str = get_next_line(fd);
+		printf("%s\n", str);
+		free (str);
 		i++;
 	}
+//	system("leaks a.out");
 	return (0);
 }
+*/

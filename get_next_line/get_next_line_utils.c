@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:04:57 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/15 14:55:51 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2023/11/16 15:39:04 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_check(char *temp)
 	int	i;
 
 	i = 0;
+	if (temp == NULL)
+		return (0);
 	while (temp[i])
 	{
 		if ('\n' == temp[i])
@@ -72,4 +74,27 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	final[i] = '\0';
 	return (final);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	size_t		i;
+	size_t		total;
+	char		*str;
+
+	i = 0;
+	if (size == 0 || count == 0)
+		return (malloc(0));
+	total = count * size;
+	if (total / count != size)
+		return (NULL);
+	str = malloc(total * sizeof(void));
+	if (!str)
+		return (NULL);
+	while (i < total)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
 }
