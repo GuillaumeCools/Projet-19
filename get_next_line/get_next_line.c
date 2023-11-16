@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:53:22 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/14 16:24:25 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/15 15:02:13 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,19 @@ char	*ft_create_temp(char *buf, char *temp, int fd)
 	char		*second_temp;
 	int			i;
 
-	while (ft_check(temp) != 1)
+	//pour verifier si on est deja arriver a la fin du fichier
+	i = read(fd, buf, BUFFER_SIZE);
+	if (i == 0)
+		return (NULL);
+
+	while (ft_check(temp) == 0)
 	{
-		buf = malloc(BUFFER_SIZE + 1);
+		buf = malloc(BUFFER_SIZE);
 		if (!buf)
 			return (NULL);
 		i = read(fd, buf, BUFFER_SIZE);
-		if (i == -1)
-			return (NULL);
+		if (i == 0)
+			return (temp);
 		buf[BUFFER_SIZE] = '\0';
 		second_temp = ft_strjoin(temp, buf);
 		free (temp);
@@ -108,7 +113,7 @@ int	main(void)
 
 	i = 0;
 	fd = open("fichier.txt", O_RDONLY);
-	while (i < 6)
+	while (i < 8)
 	{
 		printf("%s\n", get_next_line(fd));
 		i++;

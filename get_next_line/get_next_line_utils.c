@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:04:57 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/14 16:11:02 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/15 14:55:51 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	ft_strlen(char *charset)
 
 	i = 0;
 	while (charset[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -44,9 +42,7 @@ int	ft_count(char *charset)
 
 	i = 0;
 	while (charset[i] && charset[i] != '\n')
-	{
 		i++;
-	}
 	return (i + 1);
 }
 
