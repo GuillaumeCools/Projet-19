@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:53:22 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/16 15:35:58 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/20 11:25:04 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_create_temp(char *buf, char *temp, int fd)
 	i = read(fd, buf, BUFFER_SIZE);
 	if (i == 0)
 		return (free(temp), NULL);
-	buf = malloc(BUFFER_SIZE + 1);
+	//buf = malloc(BUFFER_SIZE + 1);
+	buf = calloc(BUFFER_SIZE + 1, 1);
 	if (!buf)
 		return (free(temp), NULL);
 	while (ft_check(temp) == 0)
@@ -44,7 +45,8 @@ char	*ft_create_final(char *temp)
 	int		y;
 
 	y = 0;
-	final = malloc((ft_count(temp) + 1) * sizeof(char));
+	//final = malloc((ft_count(temp) + 1) * sizeof(char));
+	final = calloc((ft_count(temp) + 1), sizeof(char));
 	if (!final)
 		return (free(temp), NULL);
 	while (y < ft_count(temp))
@@ -64,7 +66,8 @@ char	*ft_create_swap(char *temp, char *final)
 
 	y = 0;
 	i = ft_strlen(final);
-	swap = malloc((ft_strlen(temp) - ft_strlen(final)) * sizeof(char));
+	//swap = malloc((ft_strlen(temp) - ft_strlen(final)) * sizeof(char));
+	swap = calloc((ft_strlen(temp) - ft_strlen(final)), sizeof(char));
 	if (!swap)
 		return (free(temp), free(final), NULL);
 	while (temp[i])
@@ -107,9 +110,9 @@ char	*get_next_line(int fd)
 /*
 int	main(void)
 {
-	int	fd;
-	int	i;
-	char *str;
+	int		fd;
+	int		i;
+	char	*str;
 
 	i = 0;
 	fd = open("fichier.txt", O_RDONLY);

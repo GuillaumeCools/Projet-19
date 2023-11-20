@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:04:57 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/16 15:39:04 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/20 11:07:28 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_check(char *temp)
 		return (0);
 	while (temp[i])
 	{
-		if ('\n' == temp[i])
+		if (temp[i] == '\n')
 			return (1);
 		i++;
 	}
@@ -58,7 +58,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	y = 0;
 	length_total = ft_strlen(s1) + ft_strlen(s2);
-	final = malloc(length_total * sizeof(char) + 1);
+	//final = malloc(length_total * sizeof(char) + 1);
+	final = calloc((length_total + 1), sizeof(char));
 	if (!final)
 		return (NULL);
 	while (s1[i])
