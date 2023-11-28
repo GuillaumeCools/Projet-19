@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:53:22 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/20 11:25:04 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:17:04 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,24 @@ char	*ft_create_temp(char *buf, char *temp, int fd)
 	char		*second_temp;
 	int			i;
 
-	i = read(fd, buf, BUFFER_SIZE);
-	if (i == 0)
-		return (free(temp), NULL);
-	//buf = malloc(BUFFER_SIZE + 1);
-	buf = calloc(BUFFER_SIZE + 1, 1);
+	buf = ft_calloc(BUFFER_SIZE + 1, 1);
 	if (!buf)
-		return (free(temp), NULL);
-	while (ft_check(temp) == 0)
+		return (ft_free(temp), NULL);
+	while (!ft_strchr(buf, '\n'))
 	{
 		i = read(fd, buf, BUFFER_SIZE);
 		if (i == 0)
-			return (free(buf), temp);
+			break ;
 		buf[BUFFER_SIZE] = '\0';
 		second_temp = ft_strjoin(temp, buf);
-		free (temp);
+		ft_free (temp);
 		temp = second_temp;
 		if (temp == NULL)
-			return (free (buf), NULL);
+			return (ft_free (buf), NULL);
 	}
-	return (free(buf), temp);
+	//if (ft_strlen(buf) < 1)
+	//	return (ft_free(buf), ft_free(temp), NULL);
+	return (ft_free(buf), temp);
 }
 
 char	*ft_create_final(char *temp)
@@ -45,10 +43,13 @@ char	*ft_create_final(char *temp)
 	int		y;
 
 	y = 0;
-	//final = malloc((ft_count(temp) + 1) * sizeof(char));
-	final = calloc((ft_count(temp) + 1), sizeof(char));
+	if (!temp)
+		return (NULL);
+	if (!temp[y])
+		return (ft_free(temp), NULL);
+	final = ft_calloc((ft_count(temp) + 1), sizeof(char));
 	if (!final)
-		return (free(temp), NULL);
+		return (ft_free(temp), NULL);
 	while (y < ft_count(temp))
 	{
 		final[y] = temp[y];
@@ -66,17 +67,19 @@ char	*ft_create_swap(char *temp, char *final)
 
 	y = 0;
 	i = ft_strlen(final);
-	//swap = malloc((ft_strlen(temp) - ft_strlen(final)) * sizeof(char));
-	swap = calloc((ft_strlen(temp) - ft_strlen(final)), sizeof(char));
+	if (temp[i - 1] != '\n')
+		return (ft_free(temp), NULL);
+	swap = ft_calloc((ft_strlen(temp) - ft_strlen(final) + 1), sizeof(char));
 	if (!swap)
-		return (free(temp), free(final), NULL);
+		return (ft_free(temp), ft_free(final), NULL);
 	while (temp[i])
 	{
 		swap[y] = temp[i];
 		i++;
 		y++;
 	}
-	return (free(temp), swap);
+	swap[y] = '\0';
+	return (ft_free(temp), swap);
 }
 
 char	*get_next_line(int fd)
@@ -84,7 +87,6 @@ char	*get_next_line(int fd)
 	char		*buf;
 	static char	*temp;
 	char		*final;
-	char		*swap;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 		return (NULL);
@@ -101,13 +103,17 @@ char	*get_next_line(int fd)
 	final = ft_create_final(temp);
 	if (final == NULL)
 		return (NULL);
-	swap = ft_create_swap(temp, final);
-	if (swap == NULL)
-		return (NULL);
-	temp = swap;
+	temp = ft_create_swap(temp, final);
+//	printf("%p", final);
 	return (final);
 }
-/*
+
+void	ft_free(void *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+}
+
 int	main(void)
 {
 	int		fd;
@@ -120,10 +126,9 @@ int	main(void)
 	{
 		str = get_next_line(fd);
 		printf("%s\n", str);
-		free (str);
+		ft_free (str);
 		i++;
 	}
 //	system("leaks a.out");
 	return (0);
 }
-*/

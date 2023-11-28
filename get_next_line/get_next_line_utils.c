@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:04:57 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/20 11:07:28 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/28 14:02:08 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_strlen(char *charset)
 		i++;
 	return (i);
 }
-
+/*
 int	ft_check(char *temp)
 {
 	int	i;
@@ -29,20 +29,21 @@ int	ft_check(char *temp)
 	i = 0;
 	if (temp == NULL)
 		return (0);
-	while (temp[i])
-	{
-		if (temp[i] == '\n')
-			return (1);
+	while (temp[i] && temp[i] != '\n')
 		i++;
-	}
-	return (0);
+	if (temp[i] == '\n')
+		return (1);
+	return (2);
 }
+*/
 
 int	ft_count(char *charset)
 {
 	int	i;
 
 	i = 0;
+	if (charset == NULL)
+		return (0);
 	while (charset[i] && charset[i] != '\n')
 		i++;
 	return (i + 1);
@@ -58,8 +59,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	y = 0;
 	length_total = ft_strlen(s1) + ft_strlen(s2);
-	//final = malloc(length_total * sizeof(char) + 1);
-	final = calloc((length_total + 1), sizeof(char));
+	final = ft_calloc((length_total + 1), sizeof(char));
 	if (!final)
 		return (NULL);
 	while (s1[i])
@@ -98,4 +98,17 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (str);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
