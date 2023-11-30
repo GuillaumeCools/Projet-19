@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:53:22 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/28 16:17:04 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/30 17:34:44 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@ char	*ft_create_temp(char *buf, char *temp, int fd)
 		i = read(fd, buf, BUFFER_SIZE);
 		if (i == 0)
 			break ;
-		buf[BUFFER_SIZE] = '\0';
+		if (i == -1)
+			return (ft_free(buf), ft_free(temp), NULL);
+		buf[i] = '\0';
 		second_temp = ft_strjoin(temp, buf);
 		ft_free (temp);
-		temp = second_temp;
-		if (temp == NULL)
+		if (second_temp == NULL)
 			return (ft_free (buf), NULL);
+		temp = second_temp;
 	}
-	//if (ft_strlen(buf) < 1)
-	//	return (ft_free(buf), ft_free(temp), NULL);
+	if (ft_strlen(temp) < 1)
+		return (ft_free(buf), ft_free(temp), NULL);
 	return (ft_free(buf), temp);
 }
 
@@ -45,11 +47,9 @@ char	*ft_create_final(char *temp)
 	y = 0;
 	if (!temp)
 		return (NULL);
-	if (!temp[y])
-		return (ft_free(temp), NULL);
 	final = ft_calloc((ft_count(temp) + 1), sizeof(char));
 	if (!final)
-		return (ft_free(temp), NULL);
+		return (NULL);
 	while (y < ft_count(temp))
 	{
 		final[y] = temp[y];
@@ -59,19 +59,23 @@ char	*ft_create_final(char *temp)
 	return (final);
 }
 
-char	*ft_create_swap(char *temp, char *final)
+char	*ft_create_swap(char *temp)
 {
 	char	*swap;
 	int		i;
 	int		y;
 
+	i = 0;
 	y = 0;
-	i = ft_strlen(final);
-	if (temp[i - 1] != '\n')
+	while (temp[i] != '\n' && temp[i])
+		i++;
+	if (!temp[i])
 		return (ft_free(temp), NULL);
-	swap = ft_calloc((ft_strlen(temp) - ft_strlen(final) + 1), sizeof(char));
+	swap = ft_calloc((ft_strlen(temp + i) + 1), sizeof(char));
 	if (!swap)
-		return (ft_free(temp), ft_free(final), NULL);
+		return (ft_free(temp), NULL);
+	if (temp[i] == '\n')
+		i++;
 	while (temp[i])
 	{
 		swap[y] = temp[i];
@@ -88,7 +92,7 @@ char	*get_next_line(int fd)
 	static char	*temp;
 	char		*final;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	buf = NULL;
 	if (temp == NULL)
@@ -102,33 +106,38 @@ char	*get_next_line(int fd)
 		return (NULL);
 	final = ft_create_final(temp);
 	if (final == NULL)
+	{
+		temp = ft_free(temp);
 		return (NULL);
-	temp = ft_create_swap(temp, final);
-//	printf("%p", final);
+	}
+	temp = ft_create_swap(temp);
 	return (final);
 }
 
-void	ft_free(void *ptr)
+void	*ft_free(void *ptr)
 {
-	free(ptr);
+	if (ptr)
+		free(ptr);
 	ptr = NULL;
+	return (NULL);
 }
-
+/*
 int	main(void)
 {
 	int		fd;
 	int		i;
 	char	*str;
 
+	fd = open("one_line_no_nl.txt", O_RDONLY);
 	i = 0;
-	fd = open("fichier.txt", O_RDONLY);
-	while (i < 1)
+	while (i < 3)
 	{
 		str = get_next_line(fd);
-		printf("%s\n", str);
+		printf("%s", str);
 		ft_free (str);
 		i++;
 	}
 //	system("leaks a.out");
 	return (0);
 }
+*/

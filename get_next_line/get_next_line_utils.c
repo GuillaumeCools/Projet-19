@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:04:57 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/28 14:02:08 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:50:47 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,12 @@ int	ft_strlen(char *charset)
 	int	i;
 
 	i = 0;
+	if (charset == NULL)
+		return (0);
 	while (charset[i])
 		i++;
 	return (i);
 }
-/*
-int	ft_check(char *temp)
-{
-	int	i;
-
-	i = 0;
-	if (temp == NULL)
-		return (0);
-	while (temp[i] && temp[i] != '\n')
-		i++;
-	if (temp[i] == '\n')
-		return (1);
-	return (2);
-}
-*/
 
 int	ft_count(char *charset)
 {
@@ -46,7 +33,9 @@ int	ft_count(char *charset)
 		return (0);
 	while (charset[i] && charset[i] != '\n')
 		i++;
-	return (i + 1);
+	if (charset[i] == '\n')
+		i++;
+	return (i);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

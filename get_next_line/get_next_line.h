@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:56:28 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/28 16:12:35 by gcools           ###   ########.fr       */
+/*   Updated: 2023/11/30 17:31:56 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
 int		ft_strlen(char *charset);
 char	*ft_strjoin(char *s1, char *s2);
-int		ft_check(char *temp);
 int		ft_count(char *charset);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(char *s, int c);
-void	ft_free(void *ptr);
+void	*ft_free(void *ptr);
 
 #endif
