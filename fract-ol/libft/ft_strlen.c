@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
+/*   Updated: 2023/10/23 12:08:47 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_intlen_pos(unsigned int n)
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
+	while (s[i])
 	{
-		n = n / 10;
 		i++;
 	}
 	return (i);
 }
+/*
+int	main(void)
+{
+	printf("%zu\n", ft_strlen("test"));
+	return (0);
+}
+*/

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/12/05 14:23:39 by gcools            #+#    #+#             */
+/*   Updated: 2023/12/05 14:41:32 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#include "fractol.h"
 
-int	ft_intlen_pos(unsigned int n)
+int	main(void)
 {
-	int	i;
+	void	*mlx;
+	void	*mlx_win;
 
-	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 }

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/20 12:19:40 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/16 14:54:15 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_intlen_pos(unsigned int n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	int		i;
+	int		lenght;
+	char	*final;
 
+	if (!s || !f)
+		return (NULL);
+	lenght = ft_strlen(s);
 	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
+	final = malloc(lenght * sizeof(char) + 1);
+	if (!final)
+		return (NULL);
+	while (i < lenght)
 	{
-		n = n / 10;
+		final[i] = f(i, s[i]);
 		i++;
 	}
-	return (i);
+	final[i] = '\0';
+	return (final);
 }

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/20 12:28:55 by gcools            #+#    #+#             */
+/*   Updated: 2023/10/20 12:34:41 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_intlen_pos(unsigned int n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	i;
+	int		i;
+	int		lenght;
 
+	lenght = ft_strlen(s);
 	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
+	while (i < lenght)
 	{
-		n = n / 10;
+		f(i, &s[i]);
 		i++;
 	}
-	return (i);
 }

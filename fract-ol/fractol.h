@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   fractol.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/12/05 11:06:51 by gcools            #+#    #+#             */
+/*   Updated: 2023/12/05 14:40:48 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
-int	ft_intlen_pos(unsigned int n)
-{
-	int	i;
+# include "mlx/mlx.h"
+# include "libft/libft.h"
 
-	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
-}
+#endif

@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/16 16:15:13 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/04 00:00:59 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_intlen_pos(unsigned int n)
+void	*ft_bzero(void *b, size_t size)
 {
-	int	i;
+	size_t	i;
+	char	*final;
 
+	final = b;
 	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
+	while (i < size)
 	{
-		n = n / 10;
+		final[i] = '\0';
 		i++;
 	}
-	return (i);
+	return (b);
 }
+/*
+int	main(void)
+{
+	char	b[] = "Bonjour";
+	int		size;
+
+	size = 3;
+	printf("%s\n", ft_memset(b, size));
+	return (0);
+}
+*/

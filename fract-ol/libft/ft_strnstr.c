@@ -1,41 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:25:23 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/05 14:13:32 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/17 11:53:13 by guillaumeco       #+#    #+#             */
+/*   Updated: 2023/10/23 12:08:59 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t size)
+char	*ft_strnstr(const char *all, const char *key, size_t size)
 {
 	size_t	i;
+	size_t	y;
 
+	if (!*key)
+		return ((char *)all);
 	i = 0;
-	if (size == 0)
-		return (0);
-	while (s1[i] && s2[i] && i < size && s1[i] == s2[i])
+	while (all[i] && i < size)
 	{
+		y = 0;
+		while (all[i + y] && key[y] && i + y < size && all[i + y] == key[y])
+		{
+			y++;
+		}
+		if (!key[y])
+		{
+			return ((char *)&all[i]);
+		}
 		i++;
 	}
-	if (i == size)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (NULL);
 }
 /*
 int	main(void)
 {
-	char *s1 = "abcdef";
-	char *s2 = "abc\375xx";
-	int	size;
+	char *all = "test";
+	char *key = "e";
+	int size;
 
-	size = 5;
-	printf("%d\n", ft_strncmp(s1, s2, size));
+	size = 3;
+	printf("%s\n", ft_strnstr(all, key, size));
 	return (0);
 }
 */

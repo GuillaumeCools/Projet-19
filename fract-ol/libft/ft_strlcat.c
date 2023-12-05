@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:25:23 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/05 14:13:32 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/16 13:31:08 by guillaumeco       #+#    #+#             */
+/*   Updated: 2023/11/13 13:06:53 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t size)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	i;
+	size_t		i;
+	size_t		y;
 
 	i = 0;
-	if (size == 0)
-		return (0);
-	while (s1[i] && s2[i] && i < size && s1[i] == s2[i])
+	y = 0;
+	while (dest[y] && y < size)
 	{
+		y++;
+	}
+	while (src[i] && y + i + 1 < size)
+	{
+		dest[y + i] = src[i];
 		i++;
 	}
-	if (i == size)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (y + i < size)
+		dest[y + i] = '\0';
+	return (y + ft_strlen(src));
 }
 /*
 int	main(void)
 {
-	char *s1 = "abcdef";
-	char *s2 = "abc\375xx";
-	int	size;
-
-	size = 5;
-	printf("%d\n", ft_strncmp(s1, s2, size));
+	char	*dest = NULL;
+	const 	char *src = "test";
+	int		size = 0;
+	
+	printf("%zu\n", ft_strlcat(dest, src, size));
+	//printf("%zu\n", strlcat(dest, src, size));
 	return (0);
 }
 */

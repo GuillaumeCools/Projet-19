@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/17 11:34:02 by guillaumeco       #+#    #+#             */
+/*   Updated: 2023/10/24 13:41:48 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_intlen_pos(unsigned int n)
+void	*ft_memchr(const void *s, int c, size_t size)
 {
-	int	i;
+	unsigned char	ch;
+	unsigned char	*str;
 
-	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
+	ch = (unsigned char)c;
+	str = (unsigned char *)s;
+	while (size > 0)
 	{
-		n = n / 10;
-		i++;
+		if (*str == ch)
+			return (str);
+		str++;
+		size--;
 	}
-	return (i);
+	return (NULL);
 }
+/*
+int	main(void)
+{
+	char	*s = "test";
+	int		c;
+	int		size;
+
+	c = 'e';
+	size = 3;
+	printf("%s\n", ft_memchr(s, c, size));
+	return (0);
+}
+*/

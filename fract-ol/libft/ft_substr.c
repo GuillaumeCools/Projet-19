@@ -1,41 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:25:23 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/05 14:13:32 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/19 10:32:28 by gcools            #+#    #+#             */
+/*   Updated: 2023/10/26 10:29:14 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char	*final;
+	size_t	size;
 	size_t	i;
 
+	if (s == NULL)
+		return (NULL);
+	size = ft_strlen(s);
+	if (start >= size)
+		return (ft_strdup(""));
+	if ((size - start) < len)
+		len = size - start;
+	final = malloc(len * sizeof(char) + 1);
+	if (!final)
+		return (NULL);
 	i = 0;
-	if (size == 0)
-		return (0);
-	while (s1[i] && s2[i] && i < size && s1[i] == s2[i])
+	while (i < len)
 	{
+		final[i] = s[start + i];
 		i++;
 	}
-	if (i == size)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	final[i] = '\0';
+	return (final);
 }
 /*
 int	main(void)
 {
-	char *s1 = "abcdef";
-	char *s2 = "abc\375xx";
-	int	size;
+	char	s[] = "";
+	int		start;
+	size_t	len;
 
-	size = 5;
-	printf("%d\n", ft_strncmp(s1, s2, size));
+	start = 1;
+	len = 1;
+	printf("%s\n", ft_substr(s, start, len));
 	return (0);
 }
 */

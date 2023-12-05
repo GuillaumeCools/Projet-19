@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen_pos.c                                    :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:15:16 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:46 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/18 13:46:42 by gcools            #+#    #+#             */
+/*   Updated: 2023/10/23 12:09:51 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_intlen_pos(unsigned int n)
+int	ft_tolower(int c)
 {
-	int	i;
-
-	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
+	if (c >= 'A' && c <= 'Z')
 	{
-		n = n / 10;
-		i++;
+		c = c + 32;
 	}
-	return (i);
+	return (c);
 }
+/*
+int	main(void)
+{
+	int	c;
+
+	c = 'A';
+	printf("%d\n", ft_tolower(c));
+	return (0);
+}
+*/

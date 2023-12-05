@@ -1,41 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:25:23 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/05 14:13:32 by gcools           ###   ########.fr       */
+/*   Created: 2023/10/18 13:03:51 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/14 11:27:33 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
+	size_t		i;
+	size_t		total;
+	char		*str;
 
 	i = 0;
-	if (size == 0)
-		return (0);
-	while (s1[i] && s2[i] && i < size && s1[i] == s2[i])
+	if (size == 0 || count == 0)
+		return (malloc(0));
+	total = count * size;
+	if (total / count != size)
+		return (NULL);
+	str = malloc(total * sizeof(void));
+	if (!str)
+		return (NULL);
+	while (i < total)
 	{
+		str[i] = '\0';
 		i++;
 	}
-	if (i == size)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (str);
 }
 /*
 int	main(void)
 {
-	char *s1 = "abcdef";
-	char *s2 = "abc\375xx";
-	int	size;
+	int		count;
+	size_t	size;
 
-	size = 5;
-	printf("%d\n", ft_strncmp(s1, s2, size));
+	count = 5;
+	size = 0;
+	printf("%s\n", ft_calloc(count, size));
+	printf("%s\n", calloc(count, size));
 	return (0);
 }
 */
