@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_intlen_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:59 by guillaumeco      ###   ########.fr       */
+/*   Created: 2023/11/06 13:45:37 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/06 14:57:46 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
+#include "../includes/ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_intlen_hex(uintptr_t n)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	if (n == 0)
+		return (1);
+	if (n < 0)
+		i++;
+	while (n != 0)
 	{
+		n = n / 16;
 		i++;
 	}
 	return (i);
 }
-/*
-int	main(void)
-{
-	printf("%zu\n", ft_strlen("test"));
-	return (0);
-}
-*/

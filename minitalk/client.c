@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:52:47 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/08 16:06:30 by gcools           ###   ########.fr       */
+/*   Updated: 2023/12/18 10:34:02 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minitalk.h>
+#include "minitalk.h"
 
 int	ft_atoi(const char *str)
 {
 	int					i;
 	int					compt;
 	unsigned long long	final;
-	unsigned long long	final_temp;
 
 	i = 0;
 	compt = 1;
@@ -32,10 +31,7 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		final_temp = final;
 		final = (final * 10) + (str[i] - 48);
-		if (final < final_temp)
-			return (ft_check(final, final_temp, compt));
 		i++;
 	}
 	return (final * compt);
@@ -43,7 +39,18 @@ int	ft_atoi(const char *str)
 
 void	ft_send_message(int pid, char c)
 {
+	int	i;
 
+	i = 0;
+	while (i < 8)
+	{
+		if ((c & (0x01 << i)))
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		usleep(300);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -57,7 +64,7 @@ int	main(int argc, char **argv)
 		pid = ft_atoi(argv[1]);
 		if (pid <= 0)
 		{
-			printf("%s\n", "Error, the PID must be superior to 0");
+			ft_printf("%s\n", "Error, the PID must be superior to 0");
 			return (1);
 		}
 		while (argv[2][i] != '\0')
@@ -68,8 +75,6 @@ int	main(int argc, char **argv)
 		ft_send_message(pid, '\n');
 	}
 	else
-	{
-		printf("%s\n", "Error");
-	}
+		ft_printf("%s\n", "Error");
 	return (0);
 }

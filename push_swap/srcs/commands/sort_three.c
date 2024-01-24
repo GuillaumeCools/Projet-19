@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:59 by guillaumeco      ###   ########.fr       */
+/*   Created: 2024/01/19 17:06:58 by guillaumeco       #+#    #+#             */
+/*   Updated: 2024/01/19 17:09:51 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/push_swap.h"
 
-size_t	ft_strlen(const char *s)
+void	sort_three(t_stack_node **a)
 {
-	int	i;
+	t_stack_node	*biggest_node;
 
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
+	biggest_node = find_max(*a);
+	if (biggest_node == *a)
+		ra(a, false);
+	else if ((*a)->next == biggest_node)
+		rra(a, false);
+	if ((*a)->nbr > (*a)->next->nbr)
+		sa(a, false);
 }
-/*
-int	main(void)
-{
-	printf("%zu\n", ft_strlen("test"));
-	return (0);
-}
-*/

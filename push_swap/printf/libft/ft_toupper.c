@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:59 by guillaumeco      ###   ########.fr       */
+/*   Created: 2023/10/18 13:17:58 by gcools            #+#    #+#             */
+/*   Updated: 2023/10/23 12:09:55 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_toupper(int c)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	if (c >= 'a' && c <= 'z')
 	{
-		i++;
+		c = c - 32;
 	}
-	return (i);
+	return (c);
 }
 /*
 int	main(void)
 {
-	printf("%zu\n", ft_strlen("test"));
+	int	c;
+
+	c = 97;
+	printf("%d\n", ft_toupper(c));
 	return (0);
 }
 */
