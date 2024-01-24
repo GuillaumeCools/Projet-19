@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gcools <gcools@student.42.fr>              +#+  +:+       +#+         #
+#    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 11:55:33 by gcools            #+#    #+#              #
-#    Updated: 2023/11/06 15:17:52 by gcools           ###   ########.fr        #
+#    Updated: 2024/01/24 18:57:52 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 	make fclean -C libft
+	rm -f srcs/libft.a
 
 re : fclean all
 

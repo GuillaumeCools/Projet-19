@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:09 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/01/24 17:08:16 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/01/24 18:53:27 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdbool.h>
 # include <limits.h>
-# include "../libft/libft.h"
 # include "../printf/includes/ft_printf.h"
+# include "../printf/includes/libft.h"
 
 typedef struct s_stack_node
 {
@@ -41,6 +41,7 @@ void			pb(t_stack_node **b, t_stack_node **a, bool print);
 void			ra(t_stack_node **a, bool print);
 void			rb(t_stack_node **b, bool print);
 void			ra(t_stack_node **a, bool print);
+void			rr(t_stack_node **a, t_stack_node **b, bool print);
 
 void			rra(t_stack_node **a, bool print);
 void			rrb(t_stack_node **b, bool print);
@@ -60,7 +61,7 @@ void			init_nodes_b(t_stack_node *a, t_stack_node *b);
 
 t_stack_node	*find_min(t_stack_node *stack);
 t_stack_node	*find_max(t_stack_node *stack);
-t_stack_node	*find_last(t_stack_node *stack)
+t_stack_node	*find_last(t_stack_node *stack);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 int				stack_len(t_stack_node *stack);
 
