@@ -3,43 +3,46 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gcools <gcools@student.42.fr>              +#+  +:+       +#+         #
+#    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 11:34:43 by gcools            #+#    #+#              #
-#    Updated: 2023/12/08 14:31:13 by gcools           ###   ########.fr        #
+#    Updated: 2024/01/24 17:49:09 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fractol
-INCLUDE = 
+NAMEC = client
+NAMES = server
+INCLUDE = -I minitalk.h
+PRINTF = printf
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LIB = libft.a
-
-SOURCES =	
-
-SRCS = $(addsuffix .c, $(SOURCES)) 
-OBJS = $(addsuffix .o, $(SOURCES))
-
-all : $(NAME)
-
-$(NAME) : $(OBJS) $(LIB)
-	$(CC) $(NAME) $(LIB)
-
-%.o : %.c
-	$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
-
-$(LIB):
-	make -C libft
-	cp libft/$(LIB) $(LIB)
+CFLAGS = -Wall -Werror -Wextra
 
 
-clean :
-	rm -rf $(OBJS)
+SOURCEC = client
+SOURCES = server
+
+SRCSS = $(addsuffix .c, $(SOURCES))
+OBJSS = $(addsuffix .o, $(SOURCES))
+
+SRCSC = $(addsuffix .c, $(SOURCEC))
+OBJSC = $(addsuffix .o, $(SOURCEC))
+
+all : $(NAMEC) $(NAMES)
+
+$(NAMEC) : $(OBJSC)
+	@make -C $(PRINTF)
+	@$(CC) $(CFLAGS) $(PRINTF)/libftprintf.a $(INCLUDE) -o $(NAMEC) $(SRCSC)
+
+$(NAMES) : $(OBJSS)
+	@$(CC) $(CFLAGS) $(PRINTF)/libftprintf.a $(INCLUDE) -o $(NAMES) $(SRCSS)
+	
+clean : 
+	rm -rf $(OBJSC)
+	rm -rf $(OBJSS)
+	@make clean -C $(PRINTF)
+
 
 fclean : clean
-	rm -f $(NAME) $(LIB)
-
-re : fclean all
-
-.PHONY : all clean fclean re
+	rm $(NAMEC)
+	rm $(NAMES)
+	@make fclean -C $(PRINTF)

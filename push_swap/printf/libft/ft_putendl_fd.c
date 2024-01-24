@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:59 by guillaumeco      ###   ########.fr       */
+/*   Created: 2023/10/18 14:32:14 by gcools            #+#    #+#             */
+/*   Updated: 2023/10/23 12:07:24 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
 	{
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	return (i);
+	ft_putchar_fd('\n', fd);
 }
+
 /*
 int	main(void)
 {
-	printf("%zu\n", ft_strlen("test"));
+	int		fd;
+	char	*s = "test";
+
+	fd = 1;
+	ft_putendl_fd(s, fd);
 	return (0);
 }
 */

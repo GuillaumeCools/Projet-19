@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_return.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:59 by guillaumeco      ###   ########.fr       */
+/*   Created: 2023/11/06 10:56:18 by gcools            #+#    #+#             */
+/*   Updated: 2023/11/06 16:01:07 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_putchar_return(char c, int fd)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
+	if (write (fd, &c, 1) == -1)
+		return (-1);
+	return (1);
 }
-/*
-int	main(void)
-{
-	printf("%zu\n", ft_strlen("test"));
-	return (0);
-}
-*/

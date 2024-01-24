@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:59 by guillaumeco      ###   ########.fr       */
+/*   Created: 2023/10/17 11:14:04 by guillaumeco       #+#    #+#             */
+/*   Updated: 2023/10/24 13:09:14 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	int		i;
 
-	i = 0;
-	while (s[i])
+	i = ft_strlen(s);
+	while (i >= 0)
 	{
-		i++;
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i--;
 	}
-	return (i);
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 /*
 int	main(void)
 {
-	printf("%zu\n", ft_strlen("test"));
+	char	*s = "teste";
+	int		c;
+
+	c = 't';
+	printf("%s\n", ft_strrchr(s, c));
 	return (0);
 }
 */

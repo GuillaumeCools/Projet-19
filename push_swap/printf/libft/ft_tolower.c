@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:40:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:59 by guillaumeco      ###   ########.fr       */
+/*   Created: 2023/10/18 13:46:42 by gcools            #+#    #+#             */
+/*   Updated: 2023/10/23 12:09:51 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_tolower(int c)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	if (c >= 'A' && c <= 'Z')
 	{
-		i++;
+		c = c + 32;
 	}
-	return (i);
+	return (c);
 }
 /*
 int	main(void)
 {
-	printf("%zu\n", ft_strlen("test"));
+	int	c;
+
+	c = 'A';
+	printf("%d\n", ft_tolower(c));
 	return (0);
 }
 */
