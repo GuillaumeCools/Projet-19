@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:11:01 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/01/20 21:40:29 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/01/24 18:53:40 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	stack_len(t_stack_node *stack)
 t_stack_node	*find_last(t_stack_node *stack)
 {
 	if (!stack)
-		retrun (NULL);
+		return (NULL);
 	while (stack->next)
 		stack = stack->next;
 	return (stack);
