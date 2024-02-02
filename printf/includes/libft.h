@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 11:38:46 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/11/06 12:36:01 by gcools           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:48:19 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>     //IMPORTANT URGENT A RETIRER NE PAS OUBLIER
 # include <stdarg.h>
 
 int		ft_atoi(const char *str);

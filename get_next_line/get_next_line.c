@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:53:22 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/30 17:34:44 by gcools           ###   ########.fr       */
+/*   Updated: 2023/12/14 11:27:05 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	main(void)
 	int		i;
 	char	*str;
 
-	fd = open("one_line_no_nl.txt", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 	i = 0;
 	while (i < 3)
 	{

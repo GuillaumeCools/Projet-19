@@ -6,14 +6,13 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:56:28 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/30 17:31:56 by gcools           ###   ########.fr       */
+/*   Updated: 2023/12/14 11:25:17 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>

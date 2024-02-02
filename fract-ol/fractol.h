@@ -13,7 +13,13 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "mlx/mlx.h"
+# include "mlx.h"
 # include "libft/libft.h"
+
+typedef struct s_data
+{
+	void	*mlx;
+	void	*window;
+}	t_data;
 
 #endif

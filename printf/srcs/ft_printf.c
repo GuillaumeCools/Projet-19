@@ -6,7 +6,7 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:54:39 by gcools            #+#    #+#             */
-/*   Updated: 2023/11/07 12:03:26 by gcools           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:35:41 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,29 @@ int	ft_check(const char *temp, va_list args)
 
 int	ft_advance(va_list args, const char *string)
 {
-	const char	*temp;
-	int			total;
-	int			total_temp;
+	int	total;
+	int	total_temp;
+	int	i;
 
 	total = 0;
-	temp = string;
-	while (*temp != '\0')
+	i = 0;
+	while (string[i] != '\0')
 	{
 		total_temp = total;
-		if (*temp != '%')
+		if (string[i] != '%')
 		{
-			if (ft_putchar_return(*temp, 1) == -1)
+			if (ft_putchar_return(string[i], 1) == -1)
 				return (-1);
 			total++;
 		}
-		if (*temp == '%')
+		else if (string[i] == '%' && string[i + 1])
 		{
-			temp++;
-			total += ft_check(temp, args);
+			i++;
+			total += ft_check(&string[i], args);
 			if (total < total_temp)
 				return (-1);
 		}
-		temp++;
+		i++;
 	}
 	return (total);
 }
