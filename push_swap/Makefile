@@ -6,7 +6,7 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 11:55:33 by gcools            #+#    #+#              #
-#    Updated: 2024/01/24 19:07:01 by guillaumeco      ###   ########.fr        #
+#    Updated: 2024/01/25 13:47:01 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,9 @@ OBJS = $(addsuffix .o, $(SOURCES))
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	make -C printf
-	$(CC) $(CFLAGS) $(LIBFT_PRINTF) $(INCLUDE) $(SRCS) -o $(NAME)
+	@make -C printf
+	@$(CC) $(CFLAGS) $(LIBFT_PRINTF) $(INCLUDE) $(SRCS) -o $(NAME)
+	@ECHO "Ready to use !"
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c
 	@mkdir -p $(@D)
@@ -56,8 +57,8 @@ clean :
 	@make clean -C printf
 
 fclean : clean
-	$(RM) $(NAME)
-	make fclean -C printf
+	@$(RM) $(NAME)
+	@make fclean -C printf
 
 re : fclean all
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gcools <gcools@student.42.fr>              +#+  +:+       +#+         #
+#    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 11:34:43 by gcools            #+#    #+#              #
-#    Updated: 2023/11/03 13:57:54 by gcools           ###   ########.fr        #
+#    Updated: 2024/01/25 13:42:51 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ OBJS = $(addsuffix .o, $(SOURCES))
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(AR) $(NAME) $(OBJS) 
+	@$(AR) $(NAME) $(OBJS) 
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
 clean :
 	rm -rf $(OBJS)
 

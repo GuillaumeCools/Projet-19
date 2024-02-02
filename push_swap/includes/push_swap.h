@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:09 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/01/24 18:53:27 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/01/25 13:34:04 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ t_stack_node	*get_cheapest(t_stack_node *stack);
 int				stack_len(t_stack_node *stack);
 
 bool			stack_sorted(t_stack_node *stack);
+void			sort_three(t_stack_node **a);
+void			sort_stacks(t_stack_node **a, t_stack_node **b);
 
 void			prep_for_push(t_stack_node **stack, t_stack_node *top_node, char stack_name);
 
-void			sort_three(t_stack_node **a);
-void			sort_stacks(t_stack_node **a, t_stack_node **b);
 
 #endif
 

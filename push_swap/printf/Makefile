@@ -6,7 +6,7 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 11:55:33 by gcools            #+#    #+#              #
-#    Updated: 2024/01/24 18:57:52 by guillaumeco      ###   ########.fr        #
+#    Updated: 2024/01/25 13:42:39 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ OBJS = $(addsuffix .o, $(SOURCES))
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	make -C libft
-	cp libft/libft.a .
-	mv libft.a libftprintf.a
-	$(AR) $(NAME) $(OBJS)
+	@make -C libft
+	@cp libft/libft.a .
+	@mv libft.a libftprintf.a
+	@$(AR) $(NAME) $(OBJS)
 
 %.o : $(SRCS_DIR)%.c
-	$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
 clean :
 	rm -rf $(OBJS)
 	make clean -C libft
