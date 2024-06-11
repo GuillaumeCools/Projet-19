@@ -6,13 +6,11 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 11:55:33 by gcools            #+#    #+#              #
-#    Updated: 2024/01/25 13:47:01 by guillaumeco      ###   ########.fr        #
+#    Updated: 2024/05/27 10:32:20 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-
-#Compiler and CFlags
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f

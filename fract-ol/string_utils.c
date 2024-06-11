@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:43:28 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/02/09 02:39:42 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/05 15:14:28 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putstr_fd(s + 1, fd);
 	}
 }
-// atoi with float
+
 double	atoldbl(char *s)
 {
 	long	integer_part;

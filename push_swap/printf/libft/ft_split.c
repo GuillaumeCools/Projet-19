@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:19:06 by gcools            #+#    #+#             */
-/*   Updated: 2023/10/26 17:12:31 by gcools           ###   ########.fr       */
+/*   Updated: 2024/04/08 17:26:09 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (split);
 }
-/*
+
 int	main(void)
 {
 	char	**tab;
@@ -140,4 +140,3 @@ int	main(void)
 	}
 	return (0);
 }
-*/

@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:52:47 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/18 10:34:02 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/03/12 14:32:23 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ void	ft_send_message(int pid, char c)
 	i = 0;
 	while (i < 8)
 	{
-		if ((c & (0x01 << i)))
+		if ((c & (1 << i)))
 			kill(pid, SIGUSR1);
+		// on compare les 8 bites du caractere qu on veut envoyer : 00000000
+		// avec le 1 :												00000001
+		// et quand les deux sont les memes on envoit SIGUSR1 (1) -> ils sont les memes quand un des huits bites est egal a 1
+		// sinon on envoie SIUSR2 (0)
+		
 		else
 			kill(pid, SIGUSR2);
 		usleep(300);
