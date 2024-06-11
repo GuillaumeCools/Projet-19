@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 03:12:15 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/04/02 11:11:24 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/05 15:34:24 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int close_handler(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx_connection, fractal->img.img_ptr);
 	mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
-	//mlx_destroy_display(fractal->mlx_connection);
 	free(fractal->mlx_connection);
 	exit(EXIT_SUCCESS);
 }
@@ -38,30 +37,27 @@ int	key_handler(int keysym, t_fractal *fractal)
 		fractal->iterations_definition += 10;
 	else if (keysym == XK_minus)
 		fractal->iterations_definition -= 10;
-	// to refresh the image	
 	fractal_render(fractal);
 	return (0);
 }
 
-int	mouse_handler(int button, t_fractal *fractal)
+int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
+	(void)x;
+	(void)y;
 	printf("%d\n", button);
-	// Zoom in
 	if (button == Button5)
 	{
 		fractal->zoom *= 0.95;
 	}
-	// Zoom out
 	else if (button == Button4)
 	{
 		fractal->zoom *= 1.05;
 	}
-	// to refresh the image	
 	fractal_render(fractal);
 	return (0);	
 }
 
-// track the mouse
 int	julia_track(int x, int y, t_fractal *fractal)
 {
 	if (!ft_strncmp(fractal->name, "julia", 5))

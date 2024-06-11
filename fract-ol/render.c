@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:38:18 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/02/13 20:51:02 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/04/02 12:46:00 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	fractal_render(t_fractal *fractal)
 	int	y;
 
 	y = -1;
-	while (y++ < HEIGHT)
+	while (++y < HEIGHT)
 	{
 		x = -1;
-		while (x++ < WIDTH)
+		while (++x < WIDTH)
 		{
 			handle_pixel(x, y, fractal);
 		}

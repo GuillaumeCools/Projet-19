@@ -101,7 +101,7 @@ t_complex	square_complex(t_complex z);
 
 // hooks_events
 int	key_handler(int keysym, t_fractal *fractal);
-int	mouse_handler(int button, t_fractal *fractal);
+int	mouse_handler(int button, int x, int y, t_fractal *fractal);
 int	julia_track(int x, int y, t_fractal *fractal);
 
 // clean

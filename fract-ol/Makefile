@@ -6,7 +6,7 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 22:16:17 by guillaumeco       #+#    #+#              #
-#    Updated: 2024/03/19 13:13:32 by guillaumeco      ###   ########.fr        #
+#    Updated: 2024/06/05 15:12:06 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ CURRENT_FILE     := 0
 define progress_bar
     @$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
     @printf "\r$(BLACK)Compiling Fract_ol... ⌛⌛⌛|%-$(TOTAL_FILES)s| %d/%d $(NC)" $$(for i in $$(seq 1 $(CURRENT_FILE)); do printf "███"; done) $(CURRENT_FILE) $(TOTAL_FILES)
-    @if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then echo "$(BLACK)\n\nFract_ol Tu peux lancer chef 👌\n$(CLOSE)"; fi
+    @if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then echo "$(BLACK)\n\nFract_ol prêt, tu peux lancer chef 👌\n$(CLOSE)"; fi
 endef
 
 all : $(NAME)

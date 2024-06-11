@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:47:13 by gcools            #+#    #+#             */
-/*   Updated: 2023/12/18 10:32:46 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/03/12 14:26:10 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,24 @@
 
 void	ft_receive_message(int c)
 {
-	static int	bit;
 	static int	i;
+	static int	stock;
 
+	//masque binaire pour faire des shifts
+	//on recup que des 1 parce que stock = 0
+	//stock :           00000001
+	//ce qu on recoit : 00000001
+	//si ce qu on recoit est un 1 on le stock et on passe a la suite 
+	//jusqu a ce que ca fasse 8 bite et donc un caractere
+	
 	if (c == SIGUSR1)
-		i |= (0x01 << bit);
-	bit++;
-	if (bit == 8)
+		stock |= (1 << i);
+	i++;
+	if (i == 8)
 	{
-		ft_printf("%c", i);
-		bit = 0;
+		ft_printf("%c", stock);
 		i = 0;
+		stock = 0;
 	}
 }
 

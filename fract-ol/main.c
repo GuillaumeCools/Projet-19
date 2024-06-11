@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:23:39 by gcools            #+#    #+#             */
-/*   Updated: 2024/02/09 21:10:19 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/05 15:11:08 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	main(int argc, char **argv)
 		{
 			fractal.julia_x = atoldbl(argv[2]);
 			fractal.julia_y = atoldbl(argv[3]);
-		}
-		//c'est good, on lance tout		
+		}	
 		fractal_init(&fractal);
 		
 		fractal_render(&fractal);

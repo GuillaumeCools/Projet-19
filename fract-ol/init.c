@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:18:33 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/02/09 02:39:22 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/05 15:25:58 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	data_init(t_fractal *fractal)
 static void	events_init(t_fractal *fractal)
 {
 	mlx_hook(fractal->mlx_window, KeyPress, KeyPressMask, key_handler, fractal);
-	mlx_hook(fractal->mlx_window, ButtonPress, ButtonPressMask, mouse_handler, fractal);
+	mlx_mouse_hook(fractal->mlx_window, mouse_handler, fractal);
 	mlx_hook(fractal->mlx_window, DestroyNotify, StructureNotifyMask, close_handler, fractal);
 	mlx_hook(fractal->mlx_window, MotionNotify, PointerMotionMask, julia_track, fractal);
 }
@@ -50,12 +50,11 @@ void	fractal_init(t_fractal *fractal)
 	fractal->img.img_ptr = mlx_new_image(fractal->mlx_connection, WIDTH, HEIGHT);
 	if (fractal->img.img_ptr == NULL)
 	{
-		//peut etre leeks ici
 		mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
 		free(fractal->mlx_connection);
 		malloc_error();
 	}
 	fractal->img.pixels_ptr = mlx_get_data_addr(fractal->img.img_ptr, &fractal->img.bpp, &fractal->img.line_len, &fractal->img.endian);
-	events_init(fractal); // TODO
+	events_init(fractal);
 	data_init(fractal);
 }
