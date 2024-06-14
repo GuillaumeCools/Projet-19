@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.utils.c                                       :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:45:44 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/02/09 02:39:33 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/14 11:29:40 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-//fonction permettant de rescale la dimension de la map correctement (800*800 -> -2 2)
-double map(double unscaled_num, double new_min, double new_max, double old_min, double old_max)
+double	map(double unscaled_num, double new_min, double new_max, double old_max)
 {
-	return (new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min;
+	return ((new_max - new_min) * (unscaled_num - 0)
+		/ (old_max - 0) + new_min);
 }
 
 t_complex	sum_complex(t_complex z1, t_complex z2)

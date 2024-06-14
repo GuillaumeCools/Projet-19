@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:38:18 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/04/02 12:46:00 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/14 11:39:28 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 {
 	int	offset;
 
-	offset = (y * img->line_len) + (x * (img->bpp /8));
+	offset = (y * img->line_len) + (x * (img->bpp / 8));
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
 }
 
@@ -40,22 +40,17 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 	t_complex	c;
 	int			i;
 	int			color;
-	
+
 	i = 0;
-
-	z.x = (map (x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
-	z.y = (map (y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
-
+	z.x = (map (x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+	z.y = (map (y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
 	mandel_vs_julia(&z, &c, fractal);
-
 	while (i < fractal->iterations_definition)
 	{
-		// z^2 + c
 		z = sum_complex(square_complex(z), c);
-
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 		{
-			color = map(i, BLACK, WHITE, 0, fractal->iterations_definition);
+			color = map(i, BLACK, WHITE, fractal->iterations_definition);
 			my_pixel_put(x, y, &fractal->img, color);
 			return ;
 		}
@@ -78,5 +73,6 @@ void	fractal_render(t_fractal *fractal)
 			handle_pixel(x, y, fractal);
 		}
 	}
-	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window, fractal->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
+		fractal->img.img_ptr, 0, 0);
 }

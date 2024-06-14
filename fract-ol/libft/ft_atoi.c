@@ -6,13 +6,13 @@
 /*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:33:02 by guillaumeco       #+#    #+#             */
-/*   Updated: 2023/11/13 13:05:11 by gcools           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:10:24 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int static	ft_check(unsigned long long final, unsigned long long final_temp, 
+int static	ft_check(unsigned long long final, unsigned long long final_temp,
 					int compt)
 {
 	if (final < final_temp && compt == -1)

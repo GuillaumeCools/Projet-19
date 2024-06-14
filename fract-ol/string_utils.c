@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:43:28 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/06/05 15:14:28 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/11 14:11:21 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

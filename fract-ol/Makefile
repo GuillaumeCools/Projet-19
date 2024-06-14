@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
+#    By: gcools <gcools@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 22:16:17 by guillaumeco       #+#    #+#              #
-#    Updated: 2024/06/05 15:12:06 by guillaumeco      ###   ########.fr        #
+#    Updated: 2024/06/11 11:53:37 by gcools           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = fractol
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
-MLX = libmlx.a -framework OpenGL -framework AppKit
+MLX = -lmlx -framework OpenGL -framework AppKit
 
 INCLUDE = -I includes
 

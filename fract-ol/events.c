@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 03:12:15 by guillaumeco       #+#    #+#             */
-/*   Updated: 2024/06/05 15:34:24 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2024/06/14 11:43:23 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-int close_handler(t_fractal *fractal)
+int	close_handler(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx_connection, fractal->img.img_ptr);
 	mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
@@ -22,20 +22,19 @@ int close_handler(t_fractal *fractal)
 
 int	key_handler(int keysym, t_fractal *fractal)
 {
-	printf("%d\n", keysym);
-	if (keysym == XK_Escape)
+	if (keysym == 53)
 		close_handler(fractal);
-	if (keysym == XK_Left)
+	if (keysym == 123)
 		fractal->shift_x += (0.5 * fractal->zoom);
-	else if (keysym == XK_Right)
+	else if (keysym == 124)
 		fractal->shift_x -= (0.5 * fractal->zoom);
-	else if (keysym == XK_Up)
+	else if (keysym == 126)
 		fractal->shift_y -= (0.5 * fractal->zoom);
-	else if (keysym == XK_Down)
+	else if (keysym == 125)
 		fractal->shift_y += (0.5 * fractal->zoom);
-	else if (keysym == XK_plus)
+	else if (keysym == 24)
 		fractal->iterations_definition += 10;
-	else if (keysym == XK_minus)
+	else if (keysym == 27)
 		fractal->iterations_definition -= 10;
 	fractal_render(fractal);
 	return (0);
@@ -45,25 +44,26 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
 	(void)x;
 	(void)y;
-	printf("%d\n", button);
-	if (button == Button5)
+	if (button == 5)
 	{
 		fractal->zoom *= 0.95;
 	}
-	else if (button == Button4)
+	else if (button == 4)
 	{
 		fractal->zoom *= 1.05;
 	}
 	fractal_render(fractal);
-	return (0);	
+	return (0);
 }
 
 int	julia_track(int x, int y, t_fractal *fractal)
 {
 	if (!ft_strncmp(fractal->name, "julia", 5))
 	{
-		fractal->julia_x = (map(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
-		fractal->julia_y = (map(y, -2, +2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		fractal->julia_x = (map(x, -2, +2, WIDTH) * fractal->zoom)
+			+ fractal->shift_x;
+		fractal->julia_y = (map(y, -2, +2, HEIGHT) * fractal->zoom)
+			+ fractal->shift_y;
 		fractal_render(fractal);
 	}
 	return (0);
